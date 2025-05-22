@@ -31,9 +31,9 @@ const Login = () => {
       "password": data.password
     }
 
-    api.authLogin(authData).then(( response: any) => {
+    api.authLogin(authData).then((response: any) => {
       console.log("THIS THIS RESPONSE ==>> ", response)
-      if( response.status === 200) {
+      if (response.status === 200) {
         console.log("Login Success")
       }
 
@@ -41,7 +41,7 @@ const Login = () => {
 
       window.location.href = "/backend/dashboard"
     }).catch((error) => {
-      console.log("THIS THIS ERROR ==>> ",error)
+      console.log("THIS THIS ERROR ==>> ", error)
     })
   };
 
@@ -110,7 +110,7 @@ const Login = () => {
 
             <Grid container>
               <Grid container spacing={2} sx={{ marginTop: 2 }}>
-                <Grid   component="div">
+                <Grid component="div">
                   <Link
                     href="#"
                     variant="body2"
@@ -119,7 +119,7 @@ const Login = () => {
                     Forgot password?
                   </Link>
                 </Grid>
-                <Grid  component="div">
+                <Grid component="div">
                   <Link
                     href="#"
                     variant="body2"

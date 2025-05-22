@@ -18,7 +18,18 @@ const getAllProductTypes = (params?: any) => {
 }
 
 // Create ProductTypes
+
+const createProductTypes = (data: any) => {
+    return Axios.post('/productTypes/create', data , {
+        baseURL: import.meta.env.VITE_BAST_URL_API,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+}
+
 // Update ProductTypes
 // Delete ProductTypes
 
-export default { getAllProductTypes }
+export default { getAllProductTypes, createProductTypes }
