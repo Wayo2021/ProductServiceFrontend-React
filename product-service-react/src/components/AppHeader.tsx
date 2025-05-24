@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, IconButton, Menu, MenuItem, Toolbar } from "@mui/material"
+import { AppBar, Avatar, Box, Button, IconButton, Menu, MenuItem, Toolbar } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import NotificationsOutlined from "@mui/icons-material/NotificationsOutlined"
 import LanguageOutlined from "@mui/icons-material/LanguageOutlined"
@@ -24,6 +24,9 @@ const AppHeader = () => {
     const handleLogout = () => {
         // Perform logout action
         // Example: clear authentication token, redirect to login page, etc.
+
+        localStorage.removeItem("token")
+        window.location.href = "/user/login"
     };
 
   return (
@@ -71,6 +74,7 @@ const AppHeader = () => {
                     </MenuItem>
                     <MenuItem onClick={handleLogout} sx={{px:'30px'}}>
                         <Logout sx={{ fontSize:'16px', mr:'20px' }} /> Logout
+                        {/* <Button onClick={handleLogout} variant="contained" color="warning"> Logout </Button> */}
                     </MenuItem>
                 </Menu>
 

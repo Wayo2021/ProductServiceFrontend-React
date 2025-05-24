@@ -9,7 +9,7 @@ type ProtectedRouteProps = {
 }
 
 const ProtectedRoute = ({
-    redirectPath = '/',
+    redirectPath = '/user/login',
     children
 }: any) => {
     if(!token) {
