@@ -1,13 +1,8 @@
-import http from './configAxios'
 import Axios from 'axios'
 
 // Read All ProductTypes
-// const getAllProductTypes = () => {
-//     return http.get('/productTypes/get')
-// }
-
 const getAllProductTypes = (params?: any) => {
-    return Axios.get('/productTypes/get',{
+    return Axios.get(`/productTypes/get`,{
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
             'Content-Type': 'application/json',
@@ -18,9 +13,8 @@ const getAllProductTypes = (params?: any) => {
 }
 
 // Create ProductTypes
-
 const createProductTypes = (data: any) => {
-    return Axios.post('/productTypes/create', data , {
+    return Axios.post(`/productTypes/create`, data , {
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
             'Content-Type': 'application/json',
@@ -30,6 +24,25 @@ const createProductTypes = (data: any) => {
 }
 
 // Update ProductTypes
-// Delete ProductTypes
+const updateProductTypes = (id: any, data: any) => {
+    return Axios.put(`/productTypes/update/${id}`, data , {
+        baseURL: import.meta.env.VITE_BAST_URL_API,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+}
 
-export default { getAllProductTypes, createProductTypes }
+// Delete ProductTypes
+const deleteProductTypes = (id: any) => {
+    return Axios.delete(`/productTypes/delete/${id}`,{
+        baseURL: import.meta.env.VITE_BAST_URL_API,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+}
+
+export default { getAllProductTypes, createProductTypes, updateProductTypes, deleteProductTypes }
