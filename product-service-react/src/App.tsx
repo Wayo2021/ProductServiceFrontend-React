@@ -1,14 +1,14 @@
 // import { Button, Stack } from '@mui/material'
 // import { Delete, Send, Photo} from '@mui/icons-material'
 import { DASHBOARD_PATH, PRODUCT_PATH, REPORT_PATH, SETTING_PATH, PRODUCT_TYPE_PATH, USER_PATH } from "./config/constants"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import AuthLayout from "./layouts/AuthLayout"
 import Login from "./pages/Login"
 import BackendLayout from "./layouts/BackendLayout"
 import Dashboard from "./pages/Dashboard"
 import Product from "./pages/Product"
 import Report from "./pages/Report"
-import Setting from "./pages/Setting" 
+import Setting from "./pages/Setting"
 import ProductType from "./pages/ProductType"
 import ProtectedRoute from "./router/ProtectedRoute"
 import User from "./pages/User"
@@ -35,25 +35,26 @@ function App() {
   //   </>
   // )
 
-return (
-  <BrowserRouter>
-    <Routes>
-      <Route element={<AuthLayout />}>
-        <Route path="/user/login" element={<Login />} />
-      </Route>
-      
-      <Route element={<ProtectedRoute><BackendLayout /></ProtectedRoute>} >
-        <Route path={DASHBOARD_PATH} element={<Dashboard />} />
-        <Route path={USER_PATH} element={<User />} />
-        <Route path={PRODUCT_PATH} element={<Product />} />
-        <Route path={PRODUCT_TYPE_PATH} element={<ProductType />} />
-        <Route path={REPORT_PATH} element={<Report />} />
-        <Route path={SETTING_PATH } element={<Setting />} />
-      </Route>
-      
-    </Routes>
-  </BrowserRouter>
-)
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Navigate to="/user/login" replace />} />
+          <Route path="/user/login" element={<Login />} />
+        </Route>
+
+        <Route element={<ProtectedRoute><BackendLayout /></ProtectedRoute>} >
+          <Route path={DASHBOARD_PATH} element={<Dashboard />} />
+          <Route path={USER_PATH} element={<User />} />
+          <Route path={PRODUCT_PATH} element={<Product />} />
+          <Route path={PRODUCT_TYPE_PATH} element={<ProductType />} />
+          <Route path={REPORT_PATH} element={<Report />} />
+          <Route path={SETTING_PATH} element={<Setting />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  )
 
 
 }

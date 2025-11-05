@@ -1,8 +1,7 @@
-import http from './configAxios'
 import Axios from 'axios'
 
 // Read All Products
-const getAllProducts = (params?: any) => {
+const getAllProduct = (params?: any) => {
     return Axios.get('/products/get',{
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
@@ -13,8 +12,31 @@ const getAllProducts = (params?: any) => {
     })
 }
 
+// Read Product Type By Code
+const getProductTypeByCode = (productCode: any) => {
+    return Axios.get(`/products/get/queryProductTypeByProductCode?productCode=${productCode}`,{
+        baseURL: import.meta.env.VITE_BAST_URL_API,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+}
+
+// Read All ProductTypes
+const getAllProductTypes = (params?: any) => {
+    return Axios.get(`/productTypes/get`,{
+        baseURL: import.meta.env.VITE_BAST_URL_API,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        params
+    })
+}
+
 // Create Products
-const createProducts = (data: any) => {
+const createProduct = (data: any) => {
     return Axios.post('/products/create', data , {
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
@@ -26,8 +48,8 @@ const createProducts = (data: any) => {
 
 
 // Update Products
-const updateProducts = (data: any) => {
-    return Axios.post('/products/update', data , {
+const updateProducts = (id: any, data: any) => {
+    return Axios.put(`/products/update/${id}`, data , {
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
             'Content-Type': 'application/json',
@@ -38,8 +60,8 @@ const updateProducts = (data: any) => {
 
 
 // Delete Products
-const deleteProducts = (data: any) => {
-    return Axios.post('/products/delete', data , {
+const deleteProduct = (id: any) => {
+    return Axios.delete(`/products/delete/${id}` , {
         baseURL: import.meta.env.VITE_BAST_URL_API,
         headers: {
             'Content-Type': 'application/json',
@@ -48,4 +70,4 @@ const deleteProducts = (data: any) => {
     })
 }
 
-export default { getAllProducts, createProducts }
+export default { getAllProduct, getProductTypeByCode, getAllProductTypes, createProduct, updateProducts, deleteProduct }

@@ -18,7 +18,7 @@ import api from "../../services/productTypeAPI";
 import { useState, useEffect } from "react";
 
 const ProductType = () => {
-    // Create state for products
+    // Create state for products type
     const [productTypes, setProductTypes] = useState([]); //กำหนดค่าเริ่มต้น productTypes เป็น Array ว่าง เพื่อรอรับข้อมูลที่โหลดมาจาก API หรือแหล่งข้อมูลอื่น
 
     // [GET] Read all products #################----------------**************************
@@ -32,9 +32,13 @@ const ProductType = () => {
     useEffect(() => { //จะทำงานเมื่อ component ถูก render
         readAllProductTypes();
     }, []); //[] กำหนดว่า useEffect() จะทำงาน ครั้งเดียว เมื่อ component ถูกโหลดครั้งแรก
-
-
-    // [CREATE] #################----------------**************************
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
+    // [CREATE] ################# 
     const [open, setOpen] = useState(false);
     const [newProductType, setNewProductType] = useState({
         id: "",
@@ -47,7 +51,10 @@ const ProductType = () => {
         setNewProductType({ ...newProductType, [event.target.name]: event.target.value });
     };
     const handleSave = () => {
-        api.createProductTypes(newProductType).then((respProductType: any) => {
+
+        const { productTypeCode, productTypeName } = newProductType;
+        api.createProductTypes({ productTypeCode, productTypeName }).then((respProductType: any) => {
+
             if (respProductType.status === 200) {
                 handleOpenAlert("Add Product Type Success", "seccess")
                 readAllProductTypes();
@@ -58,8 +65,12 @@ const ProductType = () => {
         })
         handleClose();
     };
-
-
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
     // [UPDATE] #################----------------**************************
     const [openUpdate, setOpenUpdate] = useState(false);
     const [selectProductType, setSelectProductType] = useState({
@@ -84,8 +95,12 @@ const ProductType = () => {
         });
         handleCloseUpdate();
     };
-
-
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
     // [DELETE] #################----------------**************************
     const [openDelete, setOpenDelete] = useState(false);
     const handleOpenDelete = (productType: any) => {
@@ -105,8 +120,12 @@ const ProductType = () => {
             console.log("Delete Product Type ERROR ==>> ", error);
         });
     };
-
-
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
     // [ALERT] #################----------------**************************
     const [openAlert, setOpenAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
@@ -117,10 +136,20 @@ const ProductType = () => {
         setOpenAlert(true)
     }
     const handleCloseAlert = () => setOpenAlert(false)
-
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
     // Set title #################----------------**************************
     document.title = PRODUCT_TYPE_TITLE + " | " + SYSTEM_NAME;
-
+    // 
+    // 
+    // 
+    // 
+    // 
+    //
     return (
         <>
             <h1>Products Types</h1>
@@ -129,9 +158,8 @@ const ProductType = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>No.</TableCell>
-                                <TableCell>Product Type Code</TableCell>
-                                <TableCell>Product Type Name</TableCell>
+                                <TableCell>Code</TableCell>
+                                <TableCell>Name</TableCell>
                                 <TableCell>Action &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <Button
                                     variant="contained"
                                     color="info"
@@ -146,7 +174,6 @@ const ProductType = () => {
                                 Array.isArray(productTypes) &&
                                 productTypes.map((productType: any, index: any) => (
                                     <TableRow key={index}>
-                                        <TableCell>{productType.id}</TableCell>
                                         <TableCell>{productType.productTypeCode}</TableCell>
                                         <TableCell>{productType.productTypeName}</TableCell>
                                         {/* <TableCell>
@@ -174,14 +201,6 @@ const ProductType = () => {
                 <DialogTitle>Add New Product Type</DialogTitle>
                 <DialogContent>
                     <TextField
-                        label="No."
-                        name="id"
-                        fullWidth
-                        margin="dense"
-                        type="text"
-                        onChange={handleChange}
-                    />
-                    <TextField
                         label="Product Type Code"
                         name="productTypeCode"
                         fullWidth
@@ -199,7 +218,7 @@ const ProductType = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="secondary">
+                    <Button onClick={handleClose} color="warning">
                         Cancel
                     </Button>
                     <Button onClick={handleSave} color="primary">
@@ -221,6 +240,9 @@ const ProductType = () => {
                         type="text"
                         value={selectProductType.id}
                         onChange={(event) => setSelectProductType({ ...selectProductType, id: event.target.value })}
+                        InputProps={{
+                            readOnly: true,
+                        }}
                     />
                     <TextField
                         label="Product Type Code"
@@ -242,7 +264,7 @@ const ProductType = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseUpdate} color="secondary">
+                    <Button onClick={handleCloseUpdate} color="warning">
                         Cancel
                     </Button>
                     <Button onClick={() => updateProductType(selectProductType.id, selectProductType)} color="primary">
@@ -262,7 +284,7 @@ const ProductType = () => {
                     <p style={{color: "red"}}> Are you sure you want to delete this product type?</p>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDelete} color="secondary">
+                    <Button onClick={handleCloseDelete} color="warning">
                         Cancel
                     </Button>
                     <Button onClick={() => {deleteProductType(selectProductType.id); handleCloseDelete();}} color="error">
