@@ -42,13 +42,13 @@ const SideNav = () => {
                         }
                     }
                 }}>
-                <MenuItem
+                {/* <MenuItem
                     active={activeMenuItem === DASHBOARD_PATH}
                     component={<Link to={DASHBOARD_PATH}/>}
                     icon={<DashboardOutlinedIcon />}
                     onClick={()=> handleMenuClick(DASHBOARD_PATH)}> 
                     <Typography variant="body2">Dashboard</Typography> 
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem 
                     active={activeMenuItem === PRODUCT_PATH}
                     component={<Link to={PRODUCT_PATH}/>}
@@ -63,7 +63,7 @@ const SideNav = () => {
                     onClick={()=> handleMenuClick(PRODUCT_TYPE_PATH)}> 
                     <Typography variant="body2">Product Type</Typography>
                 </MenuItem>
-                <MenuItem 
+                {/* <MenuItem 
                     active={activeMenuItem === REPORT_PATH}
                     component={<Link to={REPORT_PATH}/>}
                     icon={<AnalyticsOutlinedIcon />}
@@ -76,7 +76,7 @@ const SideNav = () => {
                     icon={<StyleOutlinedIcon />}
                     onClick={()=> handleMenuClick(SETTING_PATH)}> 
                     <Typography variant="body2">Setting </Typography>
-                </MenuItem >
+                </MenuItem > */}
             </Menu >
         </Sidebar >
     )
